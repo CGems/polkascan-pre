@@ -1,3 +1,6 @@
+[submodule "substrate-node"]
+	path = substrate-node
+	url = https://github.com/rfinex/rchain.git
 [submodule "harvester"]
 	path = harvester
 	url = https://github.com/CGems/polkascan-pre-harvester.git

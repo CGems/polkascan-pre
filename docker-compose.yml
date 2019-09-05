@@ -96,7 +96,8 @@ services:
       - MYSQL_DATABASE=polkascan
 
   substrate-node:
-    image: polkasource/substrate-client:kusama-latest
+    build: substrate-node/.
+    image: substrate-node:lastest
     hostname: substrate-node
     volumes:
       - 'substrate-data:/data'
