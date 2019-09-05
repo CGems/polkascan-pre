@@ -111,10 +111,10 @@ services:
     build:
       context: explorer-gui/.
       args:
-        NETWORK_NAME: Kusama Dev
-        NETWORK_TOKEN_SYMBOL: KSM
+        NETWORK_NAME: RChain
+        NETWORK_TOKEN_SYMBOL: RC
         NETWORK_TOKEN_DECIMALS: 15
-        API_URL: http://127.0.0.1:8080/api/v1/
+        API_URL: http://54.250.173.97:8080/api/v1/
     ports:
       - '8080:80'
     depends_on:
