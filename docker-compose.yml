@@ -85,7 +85,7 @@ services:
     hostname: redis
 
   mysql:
-    image: mysql:5.7.27
+    image: mysql:latest
     hostname: mysql
     volumes:
       - 'db-data:/var/lib/mysql'
@@ -94,8 +94,8 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=polkascan
-    # security_opt:
-      # - seccomp:unconfined
+    security_opt:
+      - seccomp:unconfined
 
   substrate-node:
     build: substrate-node/.
