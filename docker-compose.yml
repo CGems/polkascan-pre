@@ -95,7 +95,7 @@ services:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=polkascan
     security_opt:
-    - seccomp:unconfined
+      - seccomp:unconfined
 
   substrate-node:
     build: substrate-node/.
