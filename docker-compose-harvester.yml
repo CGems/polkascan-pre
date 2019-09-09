@@ -18,7 +18,7 @@ services:
       - DB_USER=root
       - DB_PASSWORD=root
       - DB_NAME=polkascan
-      - SUBSTRATE_RPC_URL=http://54.250.173.97:9933/
+      - SUBSTRATE_RPC_URL=http://substrate-node:9933/
       - TYPE_REGISTRY=kusama
       - SUBSTRATE_ADDRESS_TYPE=2
     depends_on:
@@ -36,6 +36,18 @@ services:
     environment: *env
     depends_on:
       - redis
+
+  substrate-node:
+    build: substrate-node/.
+    image: substrate-node:lastest
+    hostname: substrate-node
+    volumes:
+      - 'substrate-data:/data'
+    ports:
+      - '30333:30333'
+      - '9933:9933'
+      - '9944:9944'
+    command: --dev --rpc-external --ws-external --rpc-cors=all --pruning=archive
 
   redis:
     image: redis:3.2.11
