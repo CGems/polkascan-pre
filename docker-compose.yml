@@ -107,7 +107,19 @@ services:
       - '30333:30333'
       - '9933:9933'
       - '9944:9944'
-    command: --dev --rpc-external --ws-external --rpc-cors=all --pruning=archive
+    command: --base-path /data/alice --chain=local --alice --node-key 0000000000000000000000000000000000000000000000000000000000000001 --telemetry-url ws://telemetry.polkadot.io:1024 --validator --rpc-external --ws-external --rpc-cors=all --pruning=archive
+
+  substrate-node-bob:
+    build: substrate-node/.
+    image: substrate-node:lastest
+    hostname: substrate-node-bob
+    volumes:
+      - 'substrate-data:/data'
+    ports:
+      - '30334:30334'
+      - '9934:9934'
+      - '9945:9945'
+    command: --base-path /data/bob --chain=local --bob --bootnodes /ip4/substrate-node/tcp/30333/p2p/QmRpheLN4JWdAnY7HGJfWFNbfkQCb6tFf4vvA6hgjMZKrR --telemetry-url ws://telemetry.polkadot.io:1024 --validator --rpc-external --ws-external --rpc-cors=all --pruning=archive
 
   explorer-gui:
     image: polkascan/pre-explorer-gui:latest
