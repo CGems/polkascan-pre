@@ -17,7 +17,7 @@ services:
       - DB_USER=root
       - DB_PASSWORD=root
       - DB_NAME=polkascan
-      - SUBSTRATE_RPC_URL=http://docker0:9934/
+      - SUBSTRATE_RPC_URL=http://54.250.173.97:9934/
       - SUBSTRATE_ADDRESS_TYPE=2
       - TYPE_REGISTRY=kusama
     depends_on:
@@ -40,7 +40,7 @@ services:
       - DB_USER=root
       - DB_PASSWORD=root
       - DB_NAME=polkascan
-      - SUBSTRATE_RPC_URL=http://docker0:9934/
+      - SUBSTRATE_RPC_URL=http://54.250.173.97:9934/
       - TYPE_REGISTRY=kusama
       - SUBSTRATE_ADDRESS_TYPE=2
     depends_on:
