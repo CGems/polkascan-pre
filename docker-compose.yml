@@ -17,12 +17,11 @@ services:
       - DB_USER=root
       - DB_PASSWORD=root
       - DB_NAME=polkascan
-      - SUBSTRATE_RPC_URL=http://substrate-node:9933/
+      - SUBSTRATE_RPC_URL=http://docker0:9934/
       - SUBSTRATE_ADDRESS_TYPE=2
       - TYPE_REGISTRY=kusama
     depends_on:
       - mysql
-      - substrate-node
 
   harvester-api:
     build: harvester/.
@@ -41,13 +40,12 @@ services:
       - DB_USER=root
       - DB_PASSWORD=root
       - DB_NAME=polkascan
-      - SUBSTRATE_RPC_URL=http://substrate-node:9933/
+      - SUBSTRATE_RPC_URL=http://docker0:9934/
       - TYPE_REGISTRY=kusama
       - SUBSTRATE_ADDRESS_TYPE=2
     depends_on:
       - redis
       - mysql
-      - substrate-node
 
   harvester-worker:
     build: harvester/.
@@ -97,30 +95,6 @@ services:
     security_opt:
       - seccomp:unconfined
 
-  substrate-node:
-    build: substrate-node/.
-    image: substrate-node:lastest
-    hostname: substrate-node
-    volumes:
-      - 'substrate-data:/data'
-    ports:
-      - '30333:30333'
-      - '9933:9933'
-      - '9944:9944'
-    command: --base-path /data/alice --chain=local --alice --node-key 0000000000000000000000000000000000000000000000000000000000000001 --telemetry-url ws://telemetry.polkadot.io:1024 --validator --rpc-external --ws-external --rpc-cors=all --pruning=archive
-
-  substrate-node-bob:
-    build: substrate-node/.
-    image: substrate-node:lastest
-    hostname: substrate-node-bob
-    volumes:
-      - 'substrate-data:/data'
-    ports:
-      - '30334:30334'
-      - '9934:9934'
-      - '9945:9945'
-    command: --base-path /data/bob --chain=local --bob --bootnodes /ip4/substrate-node/tcp/30333/p2p/QmRpheLN4JWdAnY7HGJfWFNbfkQCb6tFf4vvA6hgjMZKrR --telemetry-url ws://telemetry.polkadot.io:1024 --validator --rpc-external --ws-external --rpc-cors=all --pruning=archive
-
   explorer-gui:
     image: polkascan/pre-explorer-gui:latest
     build:
@@ -138,4 +112,3 @@ services:
 
 volumes:
   db-data:
-  substrate-data:
