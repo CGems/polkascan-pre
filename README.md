@@ -21,7 +21,7 @@ docker-compose up -d mysql
 
 * Then build the other docker containers
 ```bash
-docker-compose up
+docker-compose up --build
 ```
 
 ## Links
