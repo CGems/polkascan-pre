@@ -19,6 +19,13 @@ git submodule update --remote --recursive
 docker-compose up -d mysql
 ```
 
+* database create and migrate
+
+```bash
+docker-compose up harvester-api
+Ctrl+C
+```
+
 * Then build the other docker containers
 ```bash
 docker-compose up --build
