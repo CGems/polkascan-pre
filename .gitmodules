@@ -7,3 +7,9 @@
 [submodule "explorer-gui"]
 	path = explorer-gui
 	url = https://github.com/CGems/polkascan-pre-explorer-gui.git
+[submodule "polka-rchain-api"]
+	path = polka-rchain-api
+	url = git@github.com:CGems/polka-rchain-api.git
+[submodule "polkascan-ui"]
+	path = polkascan-ui
+	url = git@github.com:CGems/polkascan-ui.git

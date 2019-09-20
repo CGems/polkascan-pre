@@ -110,5 +110,23 @@ services:
       - harvester-api
       - explorer-api
 
+  polka-rchain-api:
+    build: polka-rchain-api/.
+    image: polkascan/pre-polka-rchain-api:latest
+    hostname: polka-rchain-api
+    ports:
+      - '7001:7001'
+    depends_on:
+      - mysql
+
+  polkascan-ui:
+    image: polkascan/pre-polkascan-ui:latest
+    build:
+      context: polkascan-ui/.
+    ports:
+      - '8081:80'
+    depends_on:
+      - polka-rchain-api
+
 volumes:
   db-data:
