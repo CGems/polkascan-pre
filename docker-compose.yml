@@ -2,26 +2,26 @@ version: '3.2'
 
 services:
 
-  explorer-api:
-    build: explorer-api/.
-    image: polkascan/pre-explorer-api:latest
-    hostname: explorer-api
-    volumes:
-      - './explorer-api:/usr/src/app'
-    command: ./start.sh
-    environment:
-      - PYTHONPATH=/usr/src/app
-      - ENVIRONMENT=dev
-      - DB_HOST=mysql
-      - DB_PORT=3306
-      - DB_USER=root
-      - DB_PASSWORD=root
-      - DB_NAME=polkascan
-      - SUBSTRATE_RPC_URL=http://54.250.173.97:9934/
-      - SUBSTRATE_ADDRESS_TYPE=2
-      - TYPE_REGISTRY=kusama
-    depends_on:
-      - mysql
+  # explorer-api:
+  #   build: explorer-api/.
+  #   image: polkascan/pre-explorer-api:latest
+  #   hostname: explorer-api
+  #   volumes:
+  #     - './explorer-api:/usr/src/app'
+  #   command: ./start.sh
+  #   environment:
+  #     - PYTHONPATH=/usr/src/app
+  #     - ENVIRONMENT=dev
+  #     - DB_HOST=mysql
+  #     - DB_PORT=3306
+  #     - DB_USER=root
+  #     - DB_PASSWORD=root
+  #     - DB_NAME=polkascan
+  #     - SUBSTRATE_RPC_URL=http://54.250.173.97:9934/
+  #     - SUBSTRATE_ADDRESS_TYPE=2
+  #     - TYPE_REGISTRY=kusama
+  #   depends_on:
+  #     - mysql
 
   harvester-api:
     build: harvester/.
@@ -95,27 +95,25 @@ services:
     security_opt:
       - seccomp:unconfined
 
-  explorer-gui:
-    image: polkascan/pre-explorer-gui:latest
-    build:
-      context: explorer-gui/.
-      args:
-        NETWORK_NAME: RChain
-        NETWORK_TOKEN_SYMBOL: RC
-        NETWORK_TOKEN_DECIMALS: 15
-        API_URL: http://54.250.173.97:8080/api/v1/
-    ports:
-      - '8080:80'
-    depends_on:
-      - harvester-api
-      - explorer-api
+  # explorer-gui:
+  #   image: polkascan/pre-explorer-gui:latest
+  #   build:
+  #     context: explorer-gui/.
+  #     args:
+  #       NETWORK_NAME: RChain
+  #       NETWORK_TOKEN_SYMBOL: RC
+  #       NETWORK_TOKEN_DECIMALS: 15
+  #       API_URL: http://54.250.173.97:8080/api/v1/
+  #   ports:
+  #     - '8080:80'
+  #   depends_on:
+  #     - harvester-api
+  #     - explorer-api
 
   polka-rchain-api:
     build: polka-rchain-api/.
     image: polkascan/pre-polka-rchain-api:latest
     hostname: polka-rchain-api
-    ports:
-      - '7001:7001'
     depends_on:
       - mysql
 
