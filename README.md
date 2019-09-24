@@ -31,6 +31,11 @@ Ctrl+C
 docker-compose up --build
 ```
 
+* Alexander test network
+```bash
+docker-compose -p alexander -f docker-compose.alexander.yml up --build
+```
+
 ## Links
 * Polkascan Explorer GUI: http://127.0.0.1:8080
 * Harvester task monitor: http://127.0.0.1:5555
